@@ -12,11 +12,11 @@ I wanted something light and fun to send a “thinking of you” moment: pick a 
 
 ## ✨ Features
 
-- **Magic Garden** — Choose a theme color and step into the workshop.
-- **Flower Shop** — Drag roses, tulips, sunflowers, and blossoms into the vase; they get stems and stay where you drop them.
-- **Card Shop** — Pick a pattern (solid, dots, stripes, gingham), then type a message or draw on the card.
-- **A Special Touch** — Optional: upload one image (e.g. a photo) that appears next to your card.
-- **Share link** — When you’re done, copy a link. Anyone who opens it sees the same ending screen: your bouquet, card text, drawing, and image (no login).
+- **Magic Garden**  Choose a theme color and step into the workshop.
+- **Flower Shop**  Drag roses, tulips, sunflowers, and blossoms into the vase; they get stems and stay where you drop them.
+- **Card Shop**  Pick a pattern (solid, dots, stripes, gingham), then type a message or draw on the card.
+- **A Special Touch**  Optional: upload one image (e.g. a photo) that appears next to your card.
+- **Share link**  When you’re done, copy a link. Anyone who opens it sees the same ending screen: your bouquet, card text, drawing, and image (no login).
 
 ---
 

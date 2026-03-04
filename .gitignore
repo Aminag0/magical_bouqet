@@ -1,8 +1,12 @@
-# Supabase config — contains your project URL and anon key. Never commit this.
-supabase-config.js
+# Supabase config is committed so the live site (GitHub Pages) can create share links.
+# The anon key is safe for frontend use; Supabase uses RLS to protect your data.
+# supabase-config.js
 
-# Environment and secrets
+# Environment and secrets (other)
 .env
+.env.local
+.env.*.local
+*.pem
 .env.local
 .env.*.local
 *.pem

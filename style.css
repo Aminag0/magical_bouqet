@@ -1,0 +1,313 @@
+/* =========================================
+   STAGE 1: LANDING PAGE & MAGIC FLOWER
+   ========================================= */
+:root {
+    --theme-color: #ffb6c1; /* Default pink, changes via JavaScript */
+}
+
+body {
+    margin: 0; padding: 0;
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh;
+    background-color: #fff0f5; 
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    transition: background-color 1.5s ease;
+}
+
+.landing-container {
+    background: white; padding: 40px; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.6);
+}
+
+h1 { color: #ff69b4; }
+
+button {
+    background-color: #ffb6c1; color: #333; border: none; padding: 15px 30px;
+    font-size: 18px; border-radius: 25px; cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.2s;
+    font-family: inherit; font-weight: bold;
+}
+button:hover { transform: scale(1.05); background-color: #ff69b4; color: white; }
+
+/* The Aesthetic Flower Color Picker */
+.flower-picker-container {
+    position: relative; width: 150px; height: 150px; margin: 0 auto 30px;
+    display: flex; justify-content: center; align-items: center;
+    transition: transform 0.3s ease;
+}
+.petal {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transform-origin: center; opacity: 0.8; transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.petal::after {
+    content: ''; position: absolute; width: 30px; height: 60px;
+    border-radius: 50% 50% 20% 20%; top: 50%; left: 50%;
+    transform: translate(-50%, -100%) scaleY(1.1); transform-origin: bottom center;
+}
+.p1::after { background: radial-gradient(circle at center, #ffb6c1, white 70%); transform: translate(-50%, -100%) rotate(0deg) scaleY(1.1); }
+.p2::after { background: radial-gradient(circle at center, #ffe0e0, white 70%); transform: translate(-50%, -100%) rotate(60deg) scaleY(1.1); }
+.p3::after { background: radial-gradient(circle at center, #fafad2, white 70%); transform: translate(-50%, -100%) rotate(120deg) scaleY(1.1); }
+.p4::after { background: radial-gradient(circle at center, #98fb98, white 70%); transform: translate(-50%, -100%) rotate(180deg) scaleY(1.1); }
+.p5::after { background: radial-gradient(circle at center, #b0e0e6, white 70%); transform: translate(-50%, -100%) rotate(240deg) scaleY(1.1); }
+.p6::after { background: radial-gradient(circle at center, #d8bfd8, white 70%); transform: translate(-50%, -100%) rotate(300deg) scaleY(1.1); }
+
+.petal:hover { opacity: 1; transform: scale(1.05); z-index: 5; }
+.flower-picker-container:hover { transform: scale(1.02); }
+
+input[type="color"] {
+    z-index: 10; width: 60px; height: 60px; border: 4px solid white;
+    border-radius: 50%; cursor: pointer; outline: none; -webkit-appearance: none; appearance: none;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.4); background: white; transition: transform 0.2s ease;
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; border-radius: 50%; }
+input[type="color"]::-webkit-color-swatch { border: none; border-radius: 50%; }
+input[type="color"]:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 182, 193, 0.6); }
+
+/* =========================================
+   STAGE 2: THE WORKSHOP & GINGHAM PICNIC
+   ========================================= */
+.hidden { display: none !important; }
+
+body.picnic-bg { background-color: #ffffff; }
+body.picnic-bg::before {
+    content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+    background-image: linear-gradient(90deg, var(--theme-color) 50%, transparent 50%),
+                      linear-gradient(var(--theme-color) 50%, transparent 50%);
+    background-size: 60px 60px; opacity: 0.15;
+}
+
+#workshopPage {
+    display: flex; width: 95vw; height: 90vh; gap: 20px; justify-content: space-between; align-items: stretch;
+}
+
+.panel {
+    background: rgba(255, 255, 255, 0.85); border-radius: 20px; padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 3px dashed var(--theme-color);
+    display: flex; flex-direction: column; align-items: center;
+}
+.left-panel, .right-panel { flex: 1; }
+.center-panel { flex: 2; position: relative; }
+.panel h2 { color: var(--theme-color); margin-top: 0; font-size: 1.5rem; }
+
+/* Flower Shop */
+.flower-inventory { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.draggable-flower {
+    cursor: grab; transition: transform 0.2s; background: white; border-radius: 50%;
+    width: 70px; height: 70px; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
+}
+.draggable-flower:active { cursor: grabbing; }
+.draggable-flower:hover { transform: scale(1.15); }
+
+/* The Vase & Stems */
+.bouquet-vase {
+    width: 80%; height: 70%; border: 4px solid var(--theme-color);
+    border-radius: 20px 20px 60px 60px; margin-top: 20px;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(255,255,255,0.6); color: #888; position: relative; overflow: hidden;
+}
+
+.glass-vase {
+    position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 130px; background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.8); border-radius: 5px 5px 40px 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 20px rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px); z-index: 10;
+}
+
+.planted-wrapper { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+.stem {
+    width: 5px; background: linear-gradient(to right, #4caf50, #81c784, #4caf50);
+    position: absolute; top: 40px; left: 50%; transform-origin: top center;
+    z-index: 1; border-radius: 3px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Card Shop & Patterns */
+.pattern-options { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.pattern-btn {
+    width: 50px; height: 70px; border-radius: 8px; border: 2px solid white;
+    cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s;
+}
+.pattern-btn:hover { transform: scale(1.1); }
+.p-solid { background-color: var(--theme-color); }
+.p-dots { background-color: white; background-image: radial-gradient(var(--theme-color) 20%, transparent 20%); background-size: 15px 15px; }
+.p-stripes { background-color: white; background-image: linear-gradient(45deg, var(--theme-color) 25%, transparent 25%, transparent 50%, var(--theme-color) 50%, var(--theme-color) 75%, transparent 75%, transparent); background-size: 20px 20px; }
+.p-gingham { background-color: white; background-image: linear-gradient(90deg, var(--theme-color) 50%, transparent 50%), linear-gradient(var(--theme-color) 50%, transparent 50%); background-size: 20px 20px; opacity: 0.9; }
+
+/* =========================================
+   STAGE 3: THE MODAL & OPEN BOOK
+   ========================================= */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+    display: flex; justify-content: center; align-items: center; z-index: 100;
+}
+.modal-content {
+    background: white; padding: 20px; border-radius: 15px; width: 350px;
+    text-align: center; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.card-edit-area {
+    position: relative; width: 100%; height: 200px; margin-bottom: 15px;
+    border-radius: 10px; border: 2px solid #ccc; overflow: hidden; background: white;
+}
+#cardTextInput {
+    width: 100%; height: 100%; box-sizing: border-box; border: none; padding: 15px;
+    font-family: inherit; font-size: 16px; background: transparent; resize: none; outline: none;
+    z-index: 2; position: absolute; top:0; left:0;
+}
+#drawingCanvas { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; } 
+
+.modal-content.draw-mode #cardTextInput { pointer-events: none; opacity: 1; }
+.modal-content.draw-mode #drawingCanvas { pointer-events: auto; z-index: 3; cursor: crosshair; }
+
+.modal-tools button { margin: 0 5px; padding: 8px 15px; border-radius: 15px; background: white; border: 2px solid var(--theme-color); color: #333; cursor: pointer; font-weight: bold;}
+.modal-tools .done-btn { background: var(--theme-color); color: white; }
+
+/* The Open Book Card */
+.finished-card {
+    width: 260px; height: 160px; position: absolute; bottom: 20px; right: 20px; 
+    background-color: #fffaf0; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); transform: rotate(6deg); 
+    display: flex; flex-direction: row; cursor: pointer; overflow: hidden; 
+}
+.finished-card:hover { transform: rotate(8deg) scale(1.05); }
+.finished-card::after {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px;
+    background: rgba(0,0,0,0.05); box-shadow: -3px 0 5px rgba(0,0,0,0.1), 3px 0 5px rgba(0,0,0,0.1); z-index: 5;
+}
+.book-page { flex: 1; padding: 15px; position: relative; }
+.mini-card-text { font-size: 11px; margin: 0; z-index: 2; word-wrap: break-word; font-family: 'Courier New', Courier, monospace; color: #444; }
+.mini-card-drawing { width: 100%; height: 100%; object-fit: contain; z-index: 3; }
+
+/* =========================================
+   STAGE 2 ADDITION: Final Table Controls
+   ========================================= */
+.table-controls {
+    margin-top: 15px; display: flex; gap: 15px; align-items: center;
+}
+.table-controls .small-btn { padding: 10px 15px; font-size: 14px; }
+#doneFinalBtn { border: 3px solid var(--theme-color); }
+
+/* =========================================
+   STAGE 4: THE ENDING PAGE (NEW)
+   ========================================= */
+
+body.ending-bg { background-color: #ffffff; }
+body.ending-bg::before {
+    content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+    /* Uses your actual hearts.png file! */
+    background-image: url('hearts.png');
+    background-size: 50px 50px; /* Adjust this to make hearts bigger/smaller */
+    opacity: 0.15;
+}
+
+#endingPage {
+    width: 100vw; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.ending-content {
+    background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); border: 5px dashed var(--theme-color);
+    text-align: center;
+}
+.ending-content h2 { color: var(--theme-color); }
+
+.final-items {
+    display: flex; gap: 40px; justify-content: center; align-items: center; margin-top: 30px;
+}
+
+/* Wrapped Bouquet Style */
+.wrapped-bouquet-container {
+    position: relative; width: 180px; height: 260px;
+    display: flex; justify-content: center;
+}
+
+.paper-wrap-back {
+    position: absolute; bottom: 0; width: 140px; height: 200px;
+    background-color: #c2a681; clip-path: polygon(10% 0, 90% 0, 65% 100%, 35% 100%); z-index: 1;
+}
+
+
+
+/* THE MAGIC INVISIBLE BOX */
+.final-flowers-container {
+    position: absolute; 
+    bottom: 60px; 
+    left: 60%; 
+    margin-left: -40px; /* Keeps your arrangement perfectly centered */
+    transform: translateX(-50%) scale(0.65); 
+    z-index: 5; 
+    width: 450px; /* FIXED: Made this much wider so the sides never get clipped! */
+    height: 300px; 
+    overflow: hidden; /* Only chops off the bottom of the stems now */
+}
+/* BRING THE STEMS BACK! */
+.final-flowers-container .stem {
+    display: block; 
+}
+
+/* The front wrapper */
+.paper-wrap-front {
+    position: absolute; bottom: 0; width: 160px; height: 140px;
+    background-color: #e6c29a; clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%);
+    z-index: 10; box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+}
+
+.paper-wrap-front::after {
+    content: "🎀"; position: absolute; bottom: 20px; left: 50%; 
+    transform: translateX(-50%); font-size: 40px;
+}
+/* Book Card Style (Closed and Opened) */
+.final-card-container {
+    position: relative; width: 140px; height: 180px; perspective: 1000px; 
+}
+.hover-text { font-size: 10px; color: #888; margin-bottom: 5px; }
+
+.open-book {
+    width: 100%; height: 100%; transform-style: preserve-3d;
+    transition: transform 1s; transform-origin: left center; cursor: pointer;
+}
+
+/* Base style for all pages to ensure they are equal size */
+.book-page, .book-page-half {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    backface-visibility: hidden; background: #fffaf0; 
+    border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; box-sizing: border-box;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+/* Left Page: Cover */
+.book-cover {
+    z-index: 2; background-color: var(--theme-color); border: 2px solid white; color: white; padding: 10px;
+}
+.book-cover p { font-size: 14px; margin-top: 10px; }
+.book-cover .cover-pattern { display: block; width: 80px; height: 10px; background: white; border-radius: 5px; opacity: 0.5;}
+
+/* Inner Pages Container */
+.book-inner {
+    z-index: 1; transform: rotateY(-180deg); transform-origin: left center;
+    background: #fffaf0; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px;
+    width: 200%; height: 100%; left: 0; 
+    display: flex; flex-direction: row; /* Simple side-by-side layout */
+}
+
+/* The left and right inside pages */
+.book-page-half {
+    flex: 1; position: relative; padding: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+.left-inner-page {
+    border-right: 2px solid rgba(0,0,0,0.05); /* The spine crease */
+}
+
+.final-card-text { font-size: 10px; color: #444; font-family: 'Courier New', Courier, monospace; word-wrap: break-word; text-align: left; width: 100%; margin: 0;}
+.final-card-drawing { width: 100%; height: 45%; object-fit: contain; }
+.final-touched-image { width: 100%; height: 45%; object-fit: cover; border-top: 2px dashed rgba(0,0,0,0.1); margin-top: 5px;}
+
+/* Hover Magic */
+.final-card-container:hover .open-book {
+    transform: rotateY(-180deg); 
+}

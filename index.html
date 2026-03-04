@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Musical Bouquet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="landing-container" id="landingPage">
+        <h1>Welcome to the Magic Garden</h1>
+        <p>What is your favorite color? (Or the favorite color of the person you are sending this to!)</p>
+        
+        <div class="flower-picker-container">
+            <div class="petals">
+                <div class="petal p1"></div>
+                <div class="petal p2"></div>
+                <div class="petal p3"></div>
+                <div class="petal p4"></div>
+                <div class="petal p5"></div>
+                <div class="petal p6"></div>
+            </div>
+            <input type="color" id="colorPicker" value="#ffb6c1">
+        </div>
+
+        <button id="enterButton">Step Inside ✨</button>
+    </div>
+
+    <div id="workshopPage" class="hidden">
+        
+        <div class="panel left-panel">
+            <h2>🌸 Flower Shop</h2>
+            <div class="flower-inventory">
+                <img src="https://em-content.zobj.net/source/apple/354/rose_1f339.png" class="draggable-flower" draggable="true" width="60">
+                <img src="https://em-content.zobj.net/source/apple/354/tulip_1f337.png" class="draggable-flower" draggable="true" width="60">
+                <img src="https://em-content.zobj.net/source/apple/354/sunflower_1f33b.png" class="draggable-flower" draggable="true" width="60">
+                <img src="https://em-content.zobj.net/source/apple/354/blossom_1f33c.png" class="draggable-flower" draggable="true" width="60">
+            </div>
+        </div>
+
+        <div class="panel center-panel" id="tableTop">
+            <h2>Your Bouquet Table</h2>
+            <div class="bouquet-vase" id="vase">
+                <p id="vaseText">Drag flowers here!</p>
+                <div class="glass-vase" id="glassVase"></div>
+            </div>
+            
+            <div class="table-controls">
+                <input type="file" id="imageInput" accept="image/*" class="hidden">
+                <button id="specialTouchBtn" class="small-btn">🎁 A Special Touch?</button>
+                <button id="doneFinalBtn">✨ All Done! ✨</button>
+            </div>
+        </div>
+
+        <div class="panel right-panel">
+            <h2>💌 Card Shop</h2>
+            <p>Pick a pattern to start:</p>
+            <div class="pattern-options">
+                <button class="pattern-btn p-solid" data-pattern="p-solid"></button>
+                <button class="pattern-btn p-dots" data-pattern="p-dots"></button>
+                <button class="pattern-btn p-stripes" data-pattern="p-stripes"></button>
+                <button class="pattern-btn p-gingham" data-pattern="p-gingham"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cardModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Design Your Card 💌</h3>
+            <div class="card-edit-area" id="modalCardBg">
+                <textarea id="cardTextInput" placeholder="Type your sweet message here..."></textarea>
+                <canvas id="drawingCanvas" width="300" height="200"></canvas>
+            </div>
+            <div class="modal-tools">
+                <button id="toggleDrawBtn">✏️ Draw Instead</button>
+                <button id="doneCardBtn" class="done-btn">✨ Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="endingPage" class="hidden">
+        <div class="ending-content">
+            <h2>Your Bouquet is Ready! ✨</h2>
+            
+            <div class="final-items">
+             <div class="wrapped-bouquet-container">
+                    <div class="paper-wrap-back"></div>
+                    <div class="final-flowers-container" id="finalBouquet"></div>
+                    <div class="paper-wrap-front"></div>
+                </div>
+
+                <div class="final-card-container">
+                    <p class="hover-text">Hover to Open 💌</p>
+                    <div class="open-book" id="openBook">
+                        <div class="book-page book-cover">
+                            <p>For someone special</p>
+                            <span class="cover-pattern"></span>
+                        </div>
+                        <div class="book-page book-inner">
+                            <div class="book-page-half left-inner-page">
+                                <p class="final-card-text" id="finalCardText"></p>
+                            </div>
+                            <div class="book-page-half right-inner-page">
+                                <img class="final-card-drawing" id="finalCardDrawing">
+                                <img class="final-touched-image hidden" id="finalTouchedImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="share-section" style="margin-top: 30px; text-align: center; width: 100%;">
+                <button id="shareBtn" class="small-btn" style="background: white; border: 2px solid var(--theme-color); padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;">🔗 Copy Secure Share Link</button>
+                <p id="shareMsg" class="hidden" style="color: #4caf50; font-size: 14px; font-weight: bold; margin-top: 10px;">Link copied securely! ✨</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="supabase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>

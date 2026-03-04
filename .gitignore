@@ -1,0 +1,20 @@
+# Supabase config — contains your project URL and anon key. Never commit this.
+supabase-config.js
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/settings.json
+
+# Optional: uncomment if you add tooling later
+# node_modules/
+# dist/
+# .cache/
